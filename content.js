@@ -11,7 +11,7 @@ window.SITE = {
     linkedin: "https://www.linkedin.com/in/alexisrondeaux",
     cvFile: "assets/Alexis_RONDEAUX_CV.pdf",
     // Paste your Web3Forms access key here (see README.md, "Contact form").
-    web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY"
+    web3formsKey: "15a771b7-d928-42fd-8681-24fff6438020"
   },
 
   profile: {
