@@ -66,12 +66,12 @@ window.SITE = {
       summary: [
         "Prepared and consolidated monthly financial reports and performance analyses covering the group's 50 entities.",
         "Tracked budget vs. actuals to support budgeting, forecasting and monthly closing for a group operating across 165+ countries.",
-        "Improved and streamlined financial models and Excel-based tools, reducing preparation time by 75%."
+        "Improved and streamlined financial models and Excel-based tools, reducing preparation time by 75% (from 2 hours to 30 minutes)."
       ],
       detail: {
         takeaways: [
           "Financial reporting, budgeting and forecasting for a group of 50 entities operating across 165+ countries.",
-          "Cut preparation time by 75% by streamlining financial models and Excel-based tools.",
+          "Cut preparation time by 75%, from 2 hours to 30 minutes, by streamlining financial models and Excel-based tools.",
           "Caught renewals booked as new contracts in commission figures before they reached leadership."
         ],
         context: [
@@ -87,7 +87,7 @@ window.SITE = {
           "Coordinated with finance, sales and operations teams to ensure the accuracy and consistency of financial information."
         ],
         results: [
-          "Reduced preparation time by 75% by improving and streamlining financial models, reports and Excel-based analysis tools.",
+          "Reduced preparation time by 75%, from 2 hours to 30 minutes, by improving and streamlining financial models, reports and Excel-based analysis tools.",
           "Corrected misbooked renewals and inconsistent calculation bases in commission and bonus provision figures across subsidiaries.",
           "Reviewing the sales team's commission figures, found renewed contracts booked as new ones, which inflated both commissions and new-contract growth, a key commercial indicator. Flagged it before it reached leadership and had the figures resubmitted."
         ],
