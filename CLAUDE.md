@@ -18,8 +18,11 @@ Static personal CV site (plain HTML, CSS, JS), deployed with GitHub Pages from `
 - No phone number on the site.
 - Evernex: do not include the bonus provision forecasting mistake story. The commission figures example is fine.
 - Evernex dates: "July - December 2026" (never "expected"). Locations: Evernex Courbevoie, Hexagone Finance Paris, SIPLEC - E.Leclerc Ivry (all France).
-- Hexagone training audience: "15-person IT team". Entraide Scolaire Amicale: "recruited and trained 20 mentors".
-- TradingView has no detail page (summary card only) until Alexis provides more details.
+- Hexagone training audience: "15-person IT team". Entraide Scolaire Amicale: "recruited and trained over 20 mentors" (matches the CV).
+- TradingView and Tutoring have no detail page (summary cards only). Activities order: Entraide Scolaire Amicale, Sports, Tutoring, TradingView.
+- Evernex 75% figure: Alexis said "from 3h to 30min", which is 83%, not 75%. Do not change the figure until Alexis confirms which is right.
+- Header location: "Madrid, Spain | Paris, France".
+- Headline and "what I am looking for" wording stay as they are until Alexis sends the site for internships.
 - Light grammar fixes and restructuring of Alexis's text are allowed, without adding facts.
 
 ## Design rules

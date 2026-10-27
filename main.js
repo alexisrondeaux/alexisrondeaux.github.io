@@ -264,9 +264,8 @@
     var idx = group.indexOf(item);
     var prev = group[idx - 1], next = group[idx + 1];
 
+    // role and company are already in the title, so the facts line only adds dates and location
     var facts = [
-      ["Role", item.role],
-      [isExp ? "Company" : "Organization", item.company],
       ["Dates", item.dates],
       ["Location", item.location]
     ].filter(function (f) { return f[1]; });
@@ -275,10 +274,11 @@
       '<p class="eyebrow">' + esc(kind) + "</p>" +
       "<h1>" + esc(isExp ? item.company : item.role) + "</h1>" +
       '<p class="headline">' + esc(isExp ? item.role : item.company) + "</p>" +
-      '<dl class="facts">' + facts.map(function (f) { return "<div><dt>" + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd></div>"; }).join("") + "</dl>" +
+      '<p class="facts-line">' + facts.map(function (f) { return '<span><span class="sr-only">' + esc(f[0]) + ": </span>" + esc(f[1]) + "</span>"; }).join('<span class="dot" aria-hidden="true"></span>') + "</p>" +
       "</div></header>";
 
     html += '<div class="container detail-body">' +
+      (d.takeaways ? '<section class="takeaways reveal" aria-labelledby="h-take"><h2 id="h-take">Key takeaways</h2>' + list(d.takeaways) + "</section>" : "") +
       block("Context", paras(d.context)) +
       block(isExp ? "My responsibilities" : "What I do", list(d.responsibilities)) +
       block(isExp ? "Concrete results" : "Results", list(d.results, "bullets results")) +
