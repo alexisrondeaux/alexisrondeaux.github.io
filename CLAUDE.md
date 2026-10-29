@@ -7,6 +7,7 @@ Static personal CV site (plain HTML, CSS, JS), deployed with GitHub Pages from `
 - `main.js`: renders the pages from `content.js`. No text lives here.
 - `styles.css`: design. Colors are tokens in `:root` (navy palette, gold accent).
 - `index.html`, `experience/*.html`, `activities/*.html`: page shells. Each holds its own `<title>`, meta description and Open Graph tags, which must stay static in the HTML so LinkedIn previews work. Update them when the matching content changes.
+- Cache busting: every page loads `styles.css`, `content.js` and `main.js` with `?v=YYYYMMDD`. When any of these three files changes, bump that value in all HTML pages (same value everywhere) so visitors get the new version without a hard refresh.
 - `assets/`: CV PDF (`Alexis_RONDEAUX_CV.pdf`, keep this exact name), photo, `og-image.jpg` (LinkedIn preview), favicon.
 - Absolute URLs (`https://alexisrondeaux.github.io`) appear in the HTML heads, `robots.txt` and `sitemap.xml`. Update them all if the domain changes.
 
