@@ -311,5 +311,20 @@ window.SITE = {
     { name: "Spanish", level: "Intermediate, B1/B2" }
   ],
 
-  interests: ["Personal investing and equity markets monitoring", "Theater-going"]
+  interests: ["Personal investing and equity markets monitoring", "Theater-going"],
+
+  // Research section (research/index.html). Each report lives in its own folder
+  // research/<slug>/ with meta.json, report.md, charts/ and the PDF (see research/README.md).
+  research: {
+    title: "Research",
+    series: "Sector Overview",
+    intro:
+      "Sector Overview is a weekly series of sector analyses. Each issue covers the market size, " +
+      "market dynamics, the macro backdrop, the competitive landscape, valuation and the key themes to watch.",
+    disclaimer: "Student research for educational purposes only. Not investment advice.",
+    // Folder names of the published reports. Add new ones here; the page sorts them newest first.
+    reports: [
+      "sector-overview-01-luxury-goods"
+    ]
+  }
 };

@@ -72,6 +72,7 @@
       '<li><a href="' + homeLink() + '"' + (PAGE === "home" ? ' aria-current="page"' : "") + ">CV</a></li>" +
       navGroup("Experience", S.experience) +
       navGroup("Activities", shortName) +
+      '<li><a href="' + esc(ROOT + "research/") + '"' + (PAGE === "research" || PAGE === "report" ? ' aria-current="page"' : "") + ">Research</a></li>" +
       '<li><a href="' + homeLink("contact") + '">Contact</a></li>' +
       '<li class="nav-cta"><a class="btn btn-primary btn-sm" href="' + esc(ROOT + S.config.cvFile) + '" target="_blank" rel="noopener">' + ICON.download + "CV (PDF)</a></li>" +
       "</ul></div>";
@@ -298,6 +299,168 @@
     return '<section class="dblock reveal ' + (cls || "") + '"><h2>' + esc(title) + "</h2>" + inner + "</section>";
   }
 
+  /* ---------- Research ---------- */
+  var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  function longDate(iso) {
+    var p = String(iso).split("-");
+    return p.length === 3 ? Number(p[2]) + " " + MONTHS[Number(p[1]) - 1] + " " + p[0] : iso;
+  }
+  function getText(url) {
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error(url); return r.text(); });
+  }
+  function pdfButton(href, cls) {
+    return '<a class="btn ' + (cls || "btn-primary") + '" href="' + esc(href) + '" download>' + ICON.download + "Download PDF</a>";
+  }
+  function disclaimer() { return '<p class="disclaimer">' + esc(S.research.disclaimer) + "</p>"; }
+
+  function renderResearch() {
+    var R = S.research;
+    var main = document.getElementById("main");
+    main.innerHTML = '<header class="detail-hero"><div class="container">' +
+      '<a class="back" href="' + homeLink() + '">' + ICON.back + "Back to CV</a>" +
+      '<p class="eyebrow">' + esc(R.series) + "</p>" +
+      "<h1>" + esc(R.title) + "</h1>" +
+      '<p class="summary">' + esc(R.intro) + "</p>" + disclaimer() +
+      "</div></header>" +
+      '<div class="container research-list"><div id="report-list" aria-live="polite"><p>Loading reports...</p></div></div>';
+
+    Promise.all(R.reports.map(function (slug) {
+      return getText(slug + "/meta.json").then(JSON.parse).then(function (m) { m.slug = m.slug || slug; return m; });
+    })).then(function (metas) {
+      metas.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+      document.getElementById("report-list").innerHTML = metas.map(reportCard).join("");
+      reveal();
+    }).catch(function () {
+      document.getElementById("report-list").innerHTML = "<p>The reports could not be loaded. Please refresh the page.</p>";
+    });
+  }
+
+  function reportCard(m) {
+    var dir = m.slug + "/";
+    return '<article class="entry report-card reveal">' +
+      '<p class="report-kicker">' + esc(m.series + " #" + m.number) + "</p>" +
+      '<h2><a href="' + esc(dir) + '">' + esc(m.sector) + "</a></h2>" +
+      '<p class="entry-meta">' + [longDate(m.date), m.sector, "Coverage: " + m.coverage].map(esc).join('<span class="dot" aria-hidden="true"></span>') + "</p>" +
+      "<p>" + esc(m.summary) + "</p>" +
+      '<div class="ctas">' +
+      '<a class="btn btn-ghost" href="' + esc(dir) + '">Read<span class="sr-only"> ' + esc(m.title) + "</span>" + ICON.arrow + "</a>" +
+      pdfButton(dir + m.pdf) +
+      "</div></article>";
+  }
+
+  function renderReport() {
+    var main = document.getElementById("main");
+    Promise.all([getText("meta.json").then(JSON.parse), getText("report.md")]).then(function (res) {
+      var m = res[0], md = res[1];
+      var pdf = m.pdf;
+      var body = markdown(md);
+      var toc = body.headings.map(function (h) { return '<li><a href="#' + h.id + '">' + h.html + "</a></li>"; }).join("");
+      var facts = [longDate(m.date), "By " + m.author, "Coverage: " + m.coverage, m.reading_time_min + " min read"];
+
+      main.innerHTML = '<header class="detail-hero"><div class="container report-wrap">' +
+        '<a class="back" href="../">' + ICON.back + "All research</a>" +
+        '<p class="eyebrow">' + esc(m.series + " #" + m.number) + "</p>" +
+        "<h1>" + esc(m.sector) + "</h1>" +
+        '<p class="headline">' + esc(longDate(m.date).replace(/^\d+ /, "")) + "</p>" +
+        '<p class="facts-line">' + facts.map(esc).join('<span class="dot" aria-hidden="true"></span>') + "</p>" +
+        '<div class="ctas report-ctas">' + pdfButton(pdf) +
+        '<span class="pdf-note">PDF, ' + esc(m.pages) + " pages</span></div>" +
+        disclaimer() +
+        "</div></header>" +
+        '<div class="container report-wrap report-page">' +
+        '<section class="takeaways" aria-labelledby="h-take"><h2 id="h-take">Key takeaways</h2>' + list(m.key_takeaways) + "</section>" +
+        (toc ? '<details class="toc"><summary>Contents</summary><ol>' + toc + "</ol></details>" : "") +
+        '<article class="report-body">' + body.html + "</article>" +
+        '<div class="report-end">' + pdfButton(pdf) + disclaimer() + "</div>" +
+        '<div class="detail-foot"><a class="back" href="../">' + ICON.back + "All research</a>" + ctaButtons() + "</div>" +
+        "</div>";
+      if (location.hash) {
+        var t = document.getElementById(location.hash.slice(1));
+        if (t) t.scrollIntoView();
+      }
+    }).catch(function () {
+      main.innerHTML = '<div class="container detail-body"><p>The report could not be loaded. Please refresh the page or go back to <a href="../">all research</a>.</p></div>';
+    });
+  }
+
+  /* Minimal Markdown renderer for report.md: headings, paragraphs, lists, tables, images, rules, bold, italic, links. */
+  function inline(s) {
+    var out = esc(s)
+      .replace(/\*\*([^*]+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/(^|[\s(])\*(?=\S)([^*]+?)\*(?!\*)/g, "$1<em>$2</em>")
+      .replace(/https?:\/\/[^\s<]+/g, function (u) {
+        var trail = u.match(/[.,;)]+$/);
+        trail = trail ? trail[0] : "";
+        u = u.slice(0, u.length - trail.length);
+        return '<a href="' + u + '" target="_blank" rel="noopener noreferrer">' + u + "</a>" + trail;
+      });
+    return out;
+  }
+  function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+  function cells(row) { return row.trim().replace(/^\|/, "").replace(/\|$/, "").split("|"); }
+
+  function markdown(md) {
+    var lines = md.replace(/\r/g, "").split("\n");
+    var html = [], headings = [], para = [], i = 0;
+    function flush() {
+      if (!para.length) return;
+      var text = para.join(" ");
+      // a paragraph starting with "*" is a table footnote: small print
+      html.push((/^\*[^*\s]/.test(text) ? '<p class="note">' : "<p>") + inline(text) + "</p>");
+      para = [];
+    }
+
+    // the page header already shows the title and the disclaimer
+    if (/^# /.test(lines[0])) lines.shift();
+    while (lines.length && !lines[lines.length - 1].trim()) lines.pop();
+    if (lines.length && /not investment advice/i.test(lines[lines.length - 1])) lines.pop();
+
+    while (i < lines.length) {
+      var line = lines[i], t = line.trim(), mm;
+      if (!t) { flush(); i++; continue; }
+      if (/^-{3,}$/.test(t)) { flush(); html.push("<hr>"); i++; continue; }
+      if ((mm = t.match(/^(#{2,4})\s+(.*)$/))) {
+        flush();
+        var lvl = mm[1].length, id = slugify(mm[2]);
+        if (lvl === 2) headings.push({ id: id, html: inline(mm[2]) });
+        html.push("<h" + lvl + ' id="' + id + '">' + inline(mm[2]) + "</h" + lvl + ">");
+        i++; continue;
+      }
+      if ((mm = t.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/))) {
+        flush();
+        html.push('<figure><img src="' + esc(mm[2]) + '" alt="' + esc(mm[1]) + '" loading="lazy"><figcaption>' + esc(mm[1]) + "</figcaption></figure>");
+        i++; continue;
+      }
+      if (/^\|/.test(t)) {
+        flush();
+        var rows = [];
+        while (i < lines.length && /^\|/.test(lines[i].trim())) { rows.push(lines[i]); i++; }
+        var head = cells(rows[0]);
+        var bodyRows = rows.slice(/^\|[\s|:-]+\|$/.test(rows[1] || "") ? 2 : 1);
+        html.push('<div class="table-wrap" role="region" aria-label="Table" tabindex="0"><table><thead><tr>' +
+          head.map(function (c) { return "<th scope=\"col\">" + inline(c.trim()) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+          bodyRows.map(function (r) {
+            return "<tr>" + cells(r).map(function (c) { return "<td>" + inline(c.trim()) + "</td>"; }).join("") + "</tr>";
+          }).join("") + "</tbody></table></div>");
+        continue;
+      }
+      if (/^(- |\d+\. )/.test(t)) {
+        flush();
+        var ordered = /^\d+\. /.test(t), items = [];
+        while (i < lines.length && /^(- |\d+\. )/.test(lines[i].trim())) {
+          items.push("<li>" + inline(lines[i].trim().replace(/^(- |\d+\. )/, "")) + "</li>");
+          i++;
+        }
+        html.push(ordered ? '<ol class="report-ol">' + items.join("") + "</ol>" : '<ul class="bullets">' + items.join("") + "</ul>");
+        continue;
+      }
+      para.push(t);
+      i++;
+    }
+    flush();
+    return { html: html.join("\n"), headings: headings };
+  }
+
   /* ---------- Footer ---------- */
   function renderFooter() {
     var el = document.getElementById("site-footer");
@@ -320,7 +483,10 @@
   }
 
   renderNav();
-  if (PAGE === "home") renderHome(); else renderDetail();
+  if (PAGE === "home") renderHome();
+  else if (PAGE === "research") renderResearch();
+  else if (PAGE === "report") renderReport();
+  else renderDetail();
   renderFooter();
   body.classList.add("js-ready");
   reveal();

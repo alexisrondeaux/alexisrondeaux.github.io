@@ -249,6 +249,69 @@ p { margin: 0 0 1em; }
 .detail-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-top: 24px; border-top: 1px solid var(--line); }
 @media (max-width: 520px) { .pager { grid-template-columns: 1fr; } .pager .next { text-align: left; } }
 
+/* ============ Research ============ */
+.disclaimer { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+.detail-hero .summary { margin: 14px 0 0; }
+.research-list { padding-top: 40px; padding-bottom: 56px; }
+.report-card h2 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.report-card h2 a { color: var(--ink); text-decoration: none; }
+.report-card h2 a:hover { color: var(--accent); }
+.report-card .entry-meta { margin-bottom: 12px; }
+.report-card .ctas { margin-top: 4px; }
+.report-kicker { margin: 0 0 6px; color: var(--accent); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+
+.report-wrap { max-width: 760px; }
+.report-ctas { align-items: center; margin-top: 22px; }
+.pdf-note { font-size: 14px; color: var(--muted); }
+.report-page { padding-top: 36px; padding-bottom: 56px; }
+.report-page .takeaways { margin-bottom: 24px; }
+.toc { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 40px; }
+.toc summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+.toc ol { margin: 12px 0 2px; padding-left: 22px; columns: 2; column-gap: 32px; }
+.toc li { margin: 4px 0; break-inside: avoid; }
+.toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+@media (max-width: 600px) { .toc ol { columns: 1; } }
+
+.report-body { font-size: 16.5px; line-height: 1.75; overflow-wrap: break-word; }
+.report-body h2 { font-size: 23px; font-weight: 700; margin: 8px 0 16px; display: flex; align-items: center; gap: 10px; }
+.report-body h2::before { content: ""; flex: none; width: 4px; height: 20px; background: var(--accent-soft); border-radius: 2px; }
+.report-body h3 { font-size: 18px; margin: 24px 0 10px; }
+.report-body p { margin: 0 0 1.1em; }
+.report-body strong { color: var(--ink); }
+.report-body .note { font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+.report-body hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+.report-body .bullets { margin: 0 0 1.2em; }
+.report-body .bullets li { margin: 8px 0; }
+.report-ol { margin: 0 0 1.2em; padding-left: 22px; }
+.report-ol li { margin: 10px 0; padding-left: 4px; }
+.report-ol li::marker { color: var(--accent); font-weight: 700; }
+.report-body a { overflow-wrap: anywhere; }
+.report-body figure { margin: 28px 0 8px; }
+.report-body figure img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.report-body figcaption { margin-top: 8px; font-size: 13.5px; color: var(--muted); text-align: center; line-height: 1.5; }
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 4px 0 1.4em; border: 1px solid var(--line); border-radius: 8px; }
+.table-wrap:focus-visible { outline-offset: 2px; }
+.report-body table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.report-body th, .report-body td { padding: 9px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); min-width: 7.5em; }
+.report-body th { background: var(--bg-alt); color: var(--ink); font-weight: 600; font-size: 13px; }
+.report-body td:first-child { font-weight: 600; color: var(--ink); }
+.report-body tbody tr:last-child td { border-bottom: 0; }
+.report-body tbody tr:nth-child(even) td { background: #fafbfc; }
+
+.report-end { margin: 40px 0 32px; padding: 22px 24px; background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius); }
+@media (max-width: 720px) {
+  .report-body { font-size: 16px; }
+  .report-body h2 { font-size: 20px; }
+  .report-ctas .btn { flex: 0 1 auto; }
+  .report-end { padding: 18px; }
+}
+@media print {
+  .toc, .report-ctas, .report-end .btn, .detail-foot { display: none !important; }
+  .table-wrap { overflow: visible; border: 0; }
+}
+
 /* ============ Footer ============ */
 .site-footer { border-top: 1px solid var(--line); padding: 22px 0; font-size: 14px; color: var(--muted); }
 .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; }
