@@ -327,6 +327,10 @@
     Promise.all(R.reports.map(function (slug) {
       return getText(slug + "/meta.json").then(JSON.parse).then(function (m) { m.slug = m.slug || slug; return m; });
     })).then(function (metas) {
+      // a report appears on its publication date (meta.json "date"), so issues can be prepared in advance
+      var now = new Date();
+      var today = now.getFullYear() + "-" + ("0" + (now.getMonth() + 1)).slice(-2) + "-" + ("0" + now.getDate()).slice(-2);
+      metas = metas.filter(function (m) { return m.date <= today; });
       metas.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
       document.getElementById("report-list").innerHTML = metas.map(reportCard).join("");
       reveal();
@@ -356,6 +360,7 @@
       var body = markdown(md);
       var toc = body.headings.map(function (h) { return '<li><a href="#' + h.id + '">' + h.html + "</a></li>"; }).join("");
       var facts = [longDate(m.date), "By " + m.author, "Coverage: " + m.coverage, m.reading_time_min + " min read"];
+      if (m.data_as_of) facts.splice(1, 0, "Data as of " + longDate(m.data_as_of));
 
       main.innerHTML = '<header class="detail-hero"><div class="container report-wrap">' +
         '<a class="back" href="../">' + ICON.back + "All research</a>" +

@@ -322,8 +322,11 @@ window.SITE = {
       "Sector Overview is a weekly series of sector analyses. Each issue covers the market size, " +
       "market dynamics, the macro backdrop, the competitive landscape, valuation and the key themes to watch.",
     disclaimer: "Student research for educational purposes only. Not investment advice.",
-    // Folder names of the published reports. Add new ones here; the page sorts them newest first.
+    // Folder names of the reports. Add new ones here; the page sorts them newest first
+    // and only shows a report from its "date" in meta.json onwards.
     reports: [
+      "sector-overview-03-renewable-energy",
+      "sector-overview-02-european-banks",
       "sector-overview-01-luxury-goods"
     ]
   }

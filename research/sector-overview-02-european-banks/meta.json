@@ -1,0 +1,23 @@
+{
+  "series": "Sector Overview",
+  "number": 2,
+  "slug": "sector-overview-02-european-banks",
+  "title": "Sector Overview #2 | European Banks | November 2026",
+  "sector": "European Banks",
+  "coverage": "EU, UK",
+  "date": "2026-11-05",
+  "data_as_of": "2026-10-30",
+  "author": "Alexis Rondeaux",
+  "summary": "European banks are earning their best returns since the financial crisis as the ECB hikes again, but French sovereign stress halted the rally in October while UniCredit's move on Commerzbank opens a new phase of cross-border consolidation.",
+  "key_takeaways": [
+    "Profitability: EU banks' return on equity 11.3% in Q2 2026 (EBA); leaders far above (UniCredit RoTE 23.7% in H1, Santander 17.7% over 9M)",
+    "Rates: ECB deposit rate raised to 2.25% in June and 2.50% in September 2026; net interest income growing again (Société Générale +12.7% in Q3)",
+    "Share prices: STOXX Europe 600 Banks +67% in 2025, +9.0% year to date on 28 October 2026 but -8.3% in October on French debt stress",
+    "M&A: ECB cleared UniCredit to take control of Commerzbank on 15 October 2026; Intesa (€30.6bn for MPS) and MPS (€25.3bn for Banco BPM) in an open contest",
+    "Capital returns: about €117bn of dividends and buybacks planned for 2026 (about €106bn in 2025); EU average CET1 ratio 16.1%"
+  ],
+  "pdf": "sector-overview-02-european-banks-nov-2026.pdf",
+  "pages": 10,
+  "reading_time_min": 15,
+  "disclaimer": "Student research for educational purposes only. Not investment advice."
+}

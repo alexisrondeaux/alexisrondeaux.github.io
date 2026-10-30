@@ -9,7 +9,7 @@ Create `research/<slug>/` (the slug is the folder name, for example `sector-over
 
 ```
 research/<slug>/
-  meta.json        title, date, sector, coverage, summary, key takeaways, PDF file name
+  meta.json        title, date (publication), data_as_of (optional), sector, coverage, summary, key takeaways, PDF file name
   report.md        full text of the report (charts written as ![caption](charts/file.png))
   charts/          chart images (PNG)
   <file>.pdf       the PDF named in meta.json ("pdf")
@@ -36,7 +36,9 @@ reports: [
 ]
 ```
 
-The Research page sorts reports by date (newest first) using `meta.json`.
+The Research page sorts reports by date (newest first) using `meta.json`, and only lists a report from its `date` onwards.
+So you can prepare issues in advance: an issue dated next week stays hidden from the list until that day
+(its page still works if someone has the direct link).
 
 ## 4. Sitemap, preview, publish
 
@@ -50,3 +52,15 @@ The Research page sorts reports by date (newest first) using `meta.json`.
 pipe tables, images, `---` rules and bare `https://` links (they open in a new tab).
 A paragraph that starts with `*` (a table footnote) is shown in small print.
 The first `# Title` line and a final "Not investment advice" line are skipped, because the page header shows them.
+
+## Building the PDF (optional)
+
+`research/tools/` holds the scripts used for issues #2 and #3 (needs `pandoc`, Python and Playwright):
+
+```
+python3 research/tools/build_pdf.py research/<slug>          # writes research/<slug>/_print.html
+node research/tools/print_pdf.js research/<slug> <file>.pdf "Sector Overview #N | Sector | Month Year"
+rm research/<slug>/_print.html
+```
+
+`chartstyle.py` is the shared matplotlib style for the charts (1280 px wide PNG, title, source line).

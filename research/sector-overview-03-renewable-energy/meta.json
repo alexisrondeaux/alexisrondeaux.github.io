@@ -1,0 +1,23 @@
+{
+  "series": "Sector Overview",
+  "number": 3,
+  "slug": "sector-overview-03-renewable-energy",
+  "title": "Sector Overview #3 | Renewable Energy | November 2026",
+  "sector": "Renewable Energy",
+  "coverage": "Europe, US, China",
+  "date": "2026-11-12",
+  "data_as_of": "2026-10-30",
+  "author": "Alexis Rondeaux",
+  "summary": "Renewables are still being built at record pace, but the money is moving from panels to grids: China's solar installations halved, Europe struggles with negative prices, and network-heavy utilities outperform pure clean energy players.",
+  "key_takeaways": [
+    "Market size: global renewable capacity additions +16% to about 800 GW in 2025 (IEA); renewables investment -9.5% in 2025 (BNEF)",
+    "China: solar installations -54% year on year to 110.8 GW in the first nine months of 2026 after the move to market-based pricing",
+    "Company results: Iberdrola 9M net profit +10% (guidance raised); First Solar Q3 sales -23%; S&P Global Clean Energy index +1.3% year to date in mid-October",
+    "Europe: 596 negative-price hours in Spain in H1 2026; 46.8% of German solar output in April 2026 produced at negative prices",
+    "US: wind and solar had to start construction by 4 July 2026 to keep tax credits; NextEra to combine with Dominion (about $66.8bn)"
+  ],
+  "pdf": "sector-overview-03-renewable-energy-nov-2026.pdf",
+  "pages": 10,
+  "reading_time_min": 15,
+  "disclaimer": "Student research for educational purposes only. Not investment advice."
+}
