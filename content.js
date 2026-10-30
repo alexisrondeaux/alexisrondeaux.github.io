@@ -19,9 +19,10 @@ window.SITE = {
     headline: "BBA Student at IE University | Applying to Master's Programs, Fall 2027",
     location: "Madrid, Spain | Paris, France",
     summary:
-      "Fourth-year student at IE University (Madrid), with hands-on experience in FP&A and corporate finance. " +
-      "Strong analytical and quantitative skills, with a solid understanding of financial reporting, budgeting, " +
-      "forecasting and performance analysis. Currently applying to master's programs for the Fall 2027 intake.",
+      "Fourth-year student at IE University (Madrid), with internships in FP&A, cross-asset sales and renewable energy. " +
+      "What drives me is the \"why\" behind the numbers: I enjoy the moment where analysis meets communication, " +
+      "when a model has to be explained and defended, not just produced. " +
+      "Currently applying to master's programs for the Fall 2027 intake to develop that bigger picture through management studies.",
     photo: "assets/alexis-rondeaux.jpg",
     photo2x: "assets/alexis-rondeaux@2x.jpg",
     photoAlt: "Portrait of Alexis Rondeaux"
@@ -49,7 +50,7 @@ window.SITE = {
     {
       school: "Lycée Notre-Dame de Boulogne",
       location: "Boulogne-Billancourt, France",
-      degree: "Baccalaureate with Honours « Mention Très Bien »: 16.43/20",
+      degree: "Baccalaureate with Honours \"Mention Très Bien\": 16.43/20",
       dates: "Graduated: June 2023",
       points: ["Specialties: Mathematics, Economics & Geopolitics."]
     }
@@ -88,8 +89,7 @@ window.SITE = {
         ],
         results: [
           "Reduced preparation time by 75%, from 2 hours to 30 minutes, by improving and streamlining financial models, reports and Excel-based analysis tools.",
-          "Corrected misbooked renewals and inconsistent calculation bases in commission and bonus provision figures across subsidiaries.",
-          "Reviewing the sales team's commission figures, found renewed contracts booked as new ones, which inflated both commissions and new-contract growth, a key commercial indicator. Flagged it before it reached leadership and had the figures resubmitted."
+          "Reviewing the sales team's commission figures, found renewed contracts booked as new ones, which inflated both commissions and new-contract growth, a key commercial indicator. Flagged it before it reached leadership and had the figures resubmitted, along with corrections to inconsistent calculation bases across subsidiaries."
         ],
         skills: ["Financial reporting", "Budgeting & forecasting", "Budget vs. actuals analysis", "KPI analysis", "Excel modeling", "Cross-team coordination"],
         learned: [
@@ -108,28 +108,27 @@ window.SITE = {
       location: "Paris, France",
       summary: [
         "Analyzed and contacted ~100 corporate profiles, securing about 10 first-contact meetings.",
-        "Backtested 5 distinct structured products and produced the client presentation materials.",
-        "Designed and delivered a finance training session for a 15-person IT team."
+        "Backtested 5 distinct structured products and produced the client presentation materials."
       ],
       detail: {
         takeaways: [
           "Full client cycle in a sales team: ~100 corporate profiles analyzed, about 10 first-contact meetings secured.",
-          "Backtested 5 structured products and produced the client presentation materials.",
-          "Designed and delivered a finance training session for a 15-person IT team."
+          "Backtested 5 structured products and trained a 15-person IT team on the firm's products.",
+          "Learned that I enjoy the moment where analysis meets communication."
         ],
         context: [
           "Hexagone Finance is a boutique advisory firm that selects and structures investment products, across asset classes, for institutional clients.",
           "Clients choose among several options (deposit products, private equity funds, real estate or structured products) depending on their risk appetite and horizon. I worked across the full client cycle in the sales team, with a focus on structured products."
         ],
         responsibilities: [
-          "Analyzed and contacted roughly 100 corporate profiles, assessing their investment potential before reaching out.",
-          "Conducted backtests on 5 distinct structured products to analyze performance and support client recommendations.",
+          "Analyzed and contacted corporate profiles, assessing their investment potential before reaching out.",
+          "Conducted backtests on structured products to analyze their performance and support client recommendations.",
           "Developed the client-facing presentation materials showcasing tailored investment opportunities across asset classes.",
           "Designed and delivered a finance training session to help the IT team better understand the firm's products."
         ],
         results: [
           "Secured about 10 first-contact meetings from ~100 profiles, a roughly 10% conversion.",
-          "Backtested 5 structured products to support client recommendations.",
+          "Backtested 5 distinct structured products to support client recommendations.",
           "Trained a 15-person IT team on the firm's products."
         ],
         skills: ["Backtesting", "Structured products", "Client prospecting", "Pitch materials", "Training delivery", "Private equity & real estate exposure"],
@@ -149,7 +148,6 @@ window.SITE = {
       location: "Ivry, France",
       summary: [
         "Built a 20-year ROI model across 3 scenarios forecasting battery storage profitability for hypermarkets.",
-        "Presented recommendations to store owners to guide in-store energy investment decisions.",
         "Contributed to mapping the geothermal potential of 700 stores nationwide."
       ],
       detail: {
@@ -162,9 +160,9 @@ window.SITE = {
           "SIPLEC is part of E.Leclerc. I joined its renewable energy department, which supports the group's energy transition across its stores, within its broader sustainability goals."
         ],
         responsibilities: [
-          "Built a 20-year ROI model forecasting battery storage profitability across 3 scenarios.",
+          "Built a long-term, multi-scenario ROI model forecasting the profitability of battery storage for hypermarkets.",
           "Presented the model and recommendations to store owners as part of their in-store energy investment decisions.",
-          "Contributed to mapping the geothermal potential of 700 stores nationwide ahead of investing in this new technology.",
+          "Contributed to mapping the stores' geothermal potential ahead of investing in this new technology.",
           "Explored the electricity market and renewable energy solutions across B2B and B2C segments."
         ],
         results: [
@@ -186,7 +184,7 @@ window.SITE = {
       id: "entraide",
       page: "activities/entraide-scolaire.html",
       role: "Volunteer Tutor & Mentor Recruiter",
-      company: "Association « Entraide Scolaire Amicale »",
+      company: "Association \"Entraide Scolaire Amicale\"",
       dates: "Since 2022",
       summary: [
         "Weekly tutoring for children from low-income families.",

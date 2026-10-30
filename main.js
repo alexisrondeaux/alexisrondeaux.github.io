@@ -52,7 +52,7 @@
       '<ul class="nav-menu" id="' + id + '">' +
       withPages.map(function (i) {
         var cur = i.id === PAGE ? ' aria-current="page"' : "";
-        return '<li><a href="' + esc(ROOT + i.page) + '"' + cur + ">" + esc(i.company.replace(/^Association |«|»/g, "").trim()) + "</a></li>";
+        return '<li><a href="' + esc(ROOT + i.page) + '"' + cur + ">" + esc(i.company.replace(/^Association |"/g, "").trim()) + "</a></li>";
       }).join("") + "</ul></li>";
   }
 
@@ -112,9 +112,9 @@
   }
 
   /* ---------- Home ---------- */
-  function entryCard(item, kind) {
+  function entryCard(item, featured) {
     var meta = [item.dates, item.location].filter(Boolean);
-    return '<article class="entry reveal">' +
+    return '<article class="entry reveal' + (featured ? " entry-featured" : "") + '">' +
       '<div class="entry-head">' +
       "<div><h3>" + esc(item.company) + '</h3><p class="entry-role">' + esc(item.role) + "</p></div>" +
       '<p class="entry-meta">' + meta.map(esc).join('<span class="dot" aria-hidden="true"></span>') + "</p>" +
@@ -157,13 +157,20 @@
 
     html += '<section class="section alt" id="experience" aria-labelledby="h-exp"><div class="container">' +
       '<h2 id="h-exp" class="section-title">Experience</h2>' +
-      S.experience.map(function (x) { return entryCard(x); }).join("") + "</div></section>";
+      S.experience.map(function (x, i) { return entryCard(x, i === 0); }).join("") + "</div></section>";
 
-    html += '<section class="section" id="activities" aria-labelledby="h-act"><div class="container">' +
+    html += '<section class="section" id="research" aria-labelledby="h-research"><div class="container">' +
+      '<h2 id="h-research" class="section-title">' + esc(S.research.title) + "</h2>" +
+      '<p class="section-intro">' + esc(S.research.intro) + "</p>" +
+      '<div id="home-research"></div>' +
+      '<a class="read-more" href="' + esc(ROOT + "research/") + '">See all research' + ICON.arrow + "</a>" +
+      "</div></section>";
+
+    html += '<section class="section alt" id="activities" aria-labelledby="h-act"><div class="container">' +
       '<h2 id="h-act" class="section-title">Extracurricular activities</h2>' +
       '<div class="grid-2">' + S.activities.map(function (a) { return entryCard(a); }).join("") + "</div></div></section>";
 
-    html += '<section class="section alt" id="skills" aria-labelledby="h-skills"><div class="container">' +
+    html += '<section class="section" id="skills" aria-labelledby="h-skills"><div class="container">' +
       '<h2 id="h-skills" class="section-title">Skills, languages & interests</h2>' +
       '<div class="grid-3">' +
       S.skills.map(function (g) { return '<div class="panel reveal"><h3>' + esc(g.group) + "</h3>" + chips(g.items) + "</div>"; }).join("") +
@@ -176,6 +183,13 @@
     html += contactSection();
     document.getElementById("main").innerHTML = html;
     bindForm();
+
+    // latest report only, with the same visibility rule as the Research page
+    loadReports(ROOT + "research/").then(function (metas) {
+      if (!metas.length) return;
+      document.getElementById("home-research").innerHTML = reportCard(metas[0], ROOT + "research/");
+      reveal();
+    }).catch(function () {});
   }
 
   /* ---------- Contact ---------- */
@@ -324,23 +338,30 @@
       "</div></header>" +
       '<div class="container research-list"><div id="report-list" aria-live="polite"><p>Loading reports...</p></div></div>';
 
-    Promise.all(R.reports.map(function (slug) {
-      return getText(slug + "/meta.json").then(JSON.parse).then(function (m) { m.slug = m.slug || slug; return m; });
-    })).then(function (metas) {
-      // a report appears on its publication date (meta.json "date"), so issues can be prepared in advance
-      var now = new Date();
-      var today = now.getFullYear() + "-" + ("0" + (now.getMonth() + 1)).slice(-2) + "-" + ("0" + now.getDate()).slice(-2);
-      if (!R.showScheduled) metas = metas.filter(function (m) { return m.date <= today; });
-      metas.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
-      document.getElementById("report-list").innerHTML = metas.map(reportCard).join("");
+    loadReports("").then(function (metas) {
+      document.getElementById("report-list").innerHTML = metas.map(function (m) { return reportCard(m, ""); }).join("");
       reveal();
     }).catch(function () {
       document.getElementById("report-list").innerHTML = "<p>The reports could not be loaded. Please refresh the page.</p>";
     });
   }
 
-  function reportCard(m) {
-    var dir = m.slug + "/";
+  // reports to list, newest first; base is the path to the research/ folder
+  function loadReports(base) {
+    var R = S.research;
+    return Promise.all(R.reports.map(function (slug) {
+      return getText(base + slug + "/meta.json").then(JSON.parse).then(function (m) { m.slug = m.slug || slug; return m; });
+    })).then(function (metas) {
+      // a report appears on its publication date (meta.json "date"), so issues can be prepared in advance
+      var now = new Date();
+      var today = now.getFullYear() + "-" + ("0" + (now.getMonth() + 1)).slice(-2) + "-" + ("0" + now.getDate()).slice(-2);
+      if (!R.showScheduled) metas = metas.filter(function (m) { return m.date <= today; });
+      return metas.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    });
+  }
+
+  function reportCard(m, base) {
+    var dir = base + m.slug + "/";
     return '<article class="entry report-card reveal">' +
       '<p class="report-kicker">' + esc(m.series + " #" + m.number) + "</p>" +
       '<h2><a href="' + esc(dir) + '">' + esc(m.sector) + "</a></h2>" +
@@ -374,11 +395,13 @@
         "</div></header>" +
         '<div class="container report-wrap report-page">' +
         '<section class="takeaways" aria-labelledby="h-take"><h2 id="h-take">Key takeaways</h2>' + list(m.key_takeaways) + "</section>" +
-        (toc ? '<details class="toc"><summary>Contents</summary><ol>' + toc + "</ol></details>" : "") +
+        (toc ? '<details class="toc"><summary>Contents</summary><ol>' + toc + "</ol>" +
+          '<a class="toc-pdf" href="' + esc(pdf) + '" download>' + ICON.download + "Download PDF</a></details>" : "") +
         '<article class="report-body">' + body.html + "</article>" +
         '<div class="report-end">' + pdfButton(pdf) + disclaimer() + "</div>" +
         '<div class="detail-foot"><a class="back" href="../">' + ICON.back + "All research</a>" + ctaButtons() + "</div>" +
         "</div>";
+      bindToc();
       if (location.hash) {
         var t = document.getElementById(location.hash.slice(1));
         if (t) t.scrollIntoView();
@@ -386,6 +409,28 @@
     }).catch(function () {
       main.innerHTML = '<div class="container detail-body"><p>The report could not be loaded. Please refresh the page or go back to <a href="../">all research</a>.</p></div>';
     });
+  }
+
+  // wide screens: contents stay open in a sticky side column and follow the section being read
+  function bindToc() {
+    var toc = document.querySelector(".toc");
+    if (!toc) return;
+    var wide = window.matchMedia("(min-width: 1180px)");
+    function sync() { toc.open = wide.matches; }
+    sync();
+    if (wide.addEventListener) wide.addEventListener("change", sync);
+    if (!("IntersectionObserver" in window)) return;
+    var links = {};
+    toc.querySelectorAll("ol a").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        toc.querySelectorAll('[aria-current="location"]').forEach(function (a) { a.removeAttribute("aria-current"); });
+        var a = links[en.target.id];
+        if (a) a.setAttribute("aria-current", "location");
+      });
+    }, { rootMargin: "-80px 0px -70% 0px" });
+    document.querySelectorAll(".report-body h2[id]").forEach(function (h) { io.observe(h); });
   }
 
   /* Minimal Markdown renderer for report.md: headings, paragraphs, lists, tables, images, rules, bold, italic, links. */
