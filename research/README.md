@@ -39,6 +39,7 @@ reports: [
 The Research page sorts reports by date (newest first) using `meta.json`, and only lists a report from its `date` onwards.
 So you can prepare issues in advance: an issue dated next week stays hidden from the list until that day
 (its page still works if someone has the direct link).
+To list every report immediately, whatever its date, set `showScheduled: true` in `content.js` (currently on).
 
 ## 4. Sitemap, preview, publish
 

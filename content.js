@@ -323,7 +323,9 @@ window.SITE = {
       "market dynamics, the macro backdrop, the competitive landscape, valuation and the key themes to watch.",
     disclaimer: "Student research for educational purposes only. Not investment advice.",
     // Folder names of the reports. Add new ones here; the page sorts them newest first
-    // and only shows a report from its "date" in meta.json onwards.
+    // and only shows a report from its "date" in meta.json onwards,
+    // unless showScheduled is true (then reports dated in the future are listed too).
+    showScheduled: true,
     reports: [
       "sector-overview-03-renewable-energy",
       "sector-overview-02-european-banks",

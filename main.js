@@ -330,7 +330,7 @@
       // a report appears on its publication date (meta.json "date"), so issues can be prepared in advance
       var now = new Date();
       var today = now.getFullYear() + "-" + ("0" + (now.getMonth() + 1)).slice(-2) + "-" + ("0" + now.getDate()).slice(-2);
-      metas = metas.filter(function (m) { return m.date <= today; });
+      if (!R.showScheduled) metas = metas.filter(function (m) { return m.date <= today; });
       metas.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
       document.getElementById("report-list").innerHTML = metas.map(reportCard).join("");
       reveal();
