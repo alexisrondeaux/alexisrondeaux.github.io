@@ -1,0 +1,23 @@
+# Audio summary script | Sector Overview #3 | Renewable Energy
+
+Welcome to Sector Overview, the weekly sector research series by Alexis Rondeaux. This is the five-minute audio summary of issue number three, on renewable energy, published on the twelfth of November, twenty twenty-six, with data as of the thirtieth of October. The summary is read by an AI voice. The full report, with charts, tables and sources, is on the website.
+
+Let's start with the big picture. The world has never built so much renewable energy. According to the International Energy Agency, global renewable capacity additions rose sixteen percent in twenty twenty-five, to about eight hundred gigawatts. It was the twenty-third record year in a row. Solar accounted for more than three quarters of that, and wind for about a fifth. Battery storage grew even faster, up about forty percent.
+
+But growth is slowing, and the money is moving. BloombergNEF estimates that total energy transition investment reached a record two point three trillion dollars in twenty twenty-five, yet investment in renewables themselves fell nine and a half percent. The main reason is China.
+
+China is the swing factor. It installed nearly five hundred gigawatts of renewables in twenty twenty-five, more than sixty percent of the world total. Then it changed the rules: new projects now sell their power at market prices instead of fixed tariffs. The result is a sharp slowdown. In the first nine months of twenty twenty-six, China installed about one hundred and eleven gigawatts of solar, down fifty-four percent from the same period a year earlier. There was a rebound in the third quarter, but the boom has clearly paused.
+
+In Europe, the problem is not volume, it is price. Europe produced a record amount of solar power in the second quarter of twenty twenty-six. But when everyone produces at the same sunny hours, prices collapse. Spain recorded almost six hundred hours of negative electricity prices in the first half of the year. In Germany, almost half of all solar power in April was produced while prices were below zero. This is called cannibalisation, and it shows that grids and storage have not kept up with new generation. Offshore wind is also struggling: Germany's twenty twenty-five offshore wind auction received no bids at all.
+
+In the United States, policy is the swing factor. Under the twenty twenty-five tax law, wind and solar projects had to start construction by the fourth of July, twenty twenty-six, to keep their federal tax credits. Offshore wind faces repeated federal stop-work orders, including on Ørsted's Revolution Wind project. At the same time, there is a powerful new source of demand: data centres. The largest tech companies now account for most of the power purchase agreements signed in North America.
+
+So who is winning? Not necessarily the pure clean energy players. The S&P Global Clean Energy index was up only about one percent for the year in mid-October, after falling almost thirteen percent over three months. The winners are utilities that own electricity networks. Iberdrola, for example, grew its nine-month net profit by ten percent, to five point eight billion euros, and raised its guidance. Networks now make up more than half of its operating profit. RWE raised its twenty twenty-six profit outlook, and the turbine maker Vestas is back to healthy margins. On the other side, First Solar's third-quarter sales fell twenty-three percent. And in the United States, NextEra Energy agreed to combine with Dominion Energy, in a deal worth about sixty-seven billion dollars including debt.
+
+On valuation, European utilities trade at about fourteen times expected earnings, in line with their ten-year average, but at a premium to history on an enterprise value to operating profit basis. They remain about thirty percent cheaper than American utilities.
+
+The report highlights four themes. First, grids are both the bottleneck and the opportunity. Second, data centres are changing demand in the United States. Third, China's slowdown keeps solar panel prices near record lows. And fourth, offshore wind needs a new contract model, with guaranteed prices, before investment can restart.
+
+Finally, three names to watch, without any rating. Iberdrola, the network champion. Vestas, a turnaround story with a record order backlog. And Ørsted, the highest-risk name, whose fate depends on decisions in Washington.
+
+That was the audio summary of Sector Overview number three, on renewable energy. The full report, with five charts, the comparison tables and all the sources, is available on the website, along with the PDF. This is student research for educational purposes only, and it is not investment advice. Thank you for listening.

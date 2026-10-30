@@ -263,6 +263,10 @@ p { margin: 0 0 1em; }
 .pdf-note { font-size: 14px; color: var(--muted); }
 .report-page { padding-top: 36px; padding-bottom: 56px; }
 .report-page .takeaways { margin-bottom: 24px; }
+.audio-box { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 24px; background: var(--bg-alt); }
+.audio-box h2 { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.audio-box audio { width: 100%; display: block; }
+.audio-note { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
 .toc { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 40px; }
 .toc summary { cursor: pointer; font-weight: 600; color: var(--ink); }
 .toc ol { margin: 12px 0 2px; padding-left: 22px; columns: 2; column-gap: 32px; }

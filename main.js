@@ -311,6 +311,15 @@
   function pdfButton(href, cls) {
     return '<a class="btn ' + (cls || "btn-primary") + '" href="' + esc(href) + '" download>' + ICON.download + "Download PDF</a>";
   }
+  // audio summary player, shown only when meta.json has "audio" (an MP3 file in the report folder)
+  function audioBox(m) {
+    if (!m.audio) return "";
+    return '<section class="audio-box" aria-labelledby="h-audio">' +
+      '<h2 id="h-audio">Listen: ' + esc(m.audio_minutes || 5) + "-minute audio summary</h2>" +
+      '<audio controls preload="none" src="' + esc(m.audio) + '"></audio>' +
+      '<p class="audio-note">Read by an AI voice.' + (m.audio_script ? ' <a href="' + esc(m.audio_script) + '" target="_blank" rel="noopener">Read the script</a>' : "") + "</p>" +
+      "</section>";
+  }
   function disclaimer() { return '<p class="disclaimer">' + esc(S.research.disclaimer) + "</p>"; }
 
   function renderResearch() {
@@ -373,6 +382,7 @@
         disclaimer() +
         "</div></header>" +
         '<div class="container report-wrap report-page">' +
+        audioBox(m) +
         '<section class="takeaways" aria-labelledby="h-take"><h2 id="h-take">Key takeaways</h2>' + list(m.key_takeaways) + "</section>" +
         (toc ? '<details class="toc"><summary>Contents</summary><ol>' + toc + "</ol></details>" : "") +
         '<article class="report-body">' + body.html + "</article>" +
