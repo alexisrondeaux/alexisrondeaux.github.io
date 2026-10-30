@@ -66,7 +66,7 @@
     });
     el.innerHTML =
       '<div class="nav-inner container">' +
-      '<a class="brand" href="' + homeLink() + '"><span class="brand-mark" aria-hidden="true">AR</span><span>' + esc(S.profile.name) + "</span></a>" +
+      '<a class="brand" href="' + homeLink() + '"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#10264a"/><g transform="translate(.75 0)"><rect x="18" y="33" width="10" height="5" fill="#c9a45c"/><path d="M9.5 50 27 14h7v36h-6V26.3L16.5 50z" fill="#fff"/><path d="M34 17h5a8.5 8.5 0 0 1 0 17h-5" fill="none" stroke="#fff" stroke-width="6"/><path d="M36.5 34h7l9.5 16h-7z" fill="#fff"/></g></svg><span>' + esc(S.profile.name) + "</span></a>" +
       '<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links"><span class="sr-only">Open menu</span><span class="bars" aria-hidden="true"></span></button>' +
       '<ul class="nav-links" id="nav-links">' +
       '<li><a href="' + homeLink() + '"' + (PAGE === "home" ? ' aria-current="page"' : "") + ">CV</a></li>" +
